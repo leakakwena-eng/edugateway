@@ -1,0 +1,16 @@
+# Registers the PostgreSQL datasource the app expects (java:jboss/datasources/EduGatewayDS).
+# 1. Copy postgresql-<version>.jar into $WILDFLY_HOME/standalone/deployments/
+# 2. Start WildFly, then run:
+#      $WILDFLY_HOME/bin/jboss-cli.sh --connect --file=backend/scripts/wildfly-datasource.cli
+#    (jboss-cli.bat on Windows). Adjust the jar name, URL and credentials as needed.
+
+data-source add \
+    --name=EduGatewayDS \
+    --jndi-name=java:jboss/datasources/EduGatewayDS \
+    --driver-name=postgresql-42.7.13.jar \
+    --connection-url=jdbc:postgresql://localhost:5432/edugateway \
+    --user-name=edugateway_user \
+    --password=edugateway_pass \
+    --enabled=true
+
+:reload

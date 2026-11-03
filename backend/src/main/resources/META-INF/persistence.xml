@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="EduGatewayPU" transaction-type="JTA">
+        <jta-data-source>java:jboss/datasources/EduGatewayDS</jta-data-source>
+        <class>za.ac.ump.edugateway.entity.Guardian</class>
+        <class>za.ac.ump.edugateway.entity.StaffUser</class>
+        <class>za.ac.ump.edugateway.entity.Learner</class>
+        <class>za.ac.ump.edugateway.entity.School</class>
+        <class>za.ac.ump.edugateway.entity.Intake</class>
+        <class>za.ac.ump.edugateway.entity.Application</class>
+        <class>za.ac.ump.edugateway.entity.TransferRecord</class>
+        <class>za.ac.ump.edugateway.entity.Document</class>
+        <class>za.ac.ump.edugateway.entity.AuditEvent</class>
+        <class>za.ac.ump.edugateway.entity.Notification</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <!-- Development convenience: Hibernate adds new tables/columns on deploy.
+                 Use a migration tool (Flyway/Liquibase) and "validate" in production. -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
