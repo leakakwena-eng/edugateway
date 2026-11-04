@@ -112,9 +112,9 @@ export default function AdminApplicationDetail() {
       <RejectionBanner app={app} />
 
       {!isReceiving && (
-        <Card className="p-4 text-sm text-slate-600 bg-slate-50">
+        <Card className="p-4 text-sm text-stone-600 bg-stone-50">
           You're the sending school for this transfer. Manage the record release from the{" "}
-          <Link to={`/schoolAdmin/transfers/${app.transferId}`} className="text-blue-600 hover:underline">
+          <Link to={`/schoolAdmin/transfers/${app.transferId}`} className="text-brand-600 hover:underline">
             transfer page
           </Link>
           .
@@ -155,7 +155,7 @@ export default function AdminApplicationDetail() {
 
       {isReceiving && (
         <Card className="p-5">
-          <h2 className="text-sm font-semibold text-slate-700 mb-3">Internal Notes</h2>
+          <h2 className="text-sm font-semibold text-stone-700 mb-3">Internal Notes</h2>
           <textarea
             value={notes}
             onChange={(e) => setNotesDraft(e.target.value)}
@@ -206,7 +206,7 @@ export default function AdminApplicationDetail() {
               >
                 <GraduationCap size={15} /> Confirm enrolment
               </Button>
-              {enrolBlocker && <span className="text-xs text-slate-500">{enrolBlocker}</span>}
+              {enrolBlocker && <span className="text-xs text-stone-500">{enrolBlocker}</span>}
             </>
           )}
         </div>
@@ -216,7 +216,7 @@ export default function AdminApplicationDetail() {
 
       {confirming && (
         <Modal title="Confirm decision" onClose={() => setConfirming(null)}>
-          <p className="text-sm text-slate-500 mb-4">
+          <p className="text-sm text-stone-500 mb-4">
             Mark this application as <strong>{statusLabel(confirming)}</strong>? The guardian will be notified.
           </p>
           {confirming === "REJECTED" && (
@@ -246,7 +246,7 @@ export default function AdminApplicationDetail() {
 
       {rejectingDoc && (
         <Modal title={`Reject ${rejectingDoc.type}`} onClose={() => setRejectingDoc(null)}>
-          <p className="text-sm text-slate-500 mb-3">The guardian will be asked to upload a new copy.</p>
+          <p className="text-sm text-stone-500 mb-3">The guardian will be asked to upload a new copy.</p>
           <textarea
             autoFocus
             value={docReason}

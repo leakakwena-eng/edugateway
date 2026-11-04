@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Plus, School } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Button, Card, EmptyState, ErrorState, PageHeader, StatusBadge } from "../../components/ui.jsx";
+import { SchoolArt } from "../../components/Illustrations.jsx";
 import { TableSkeleton } from "../../components/Skeleton.jsx";
 import { intakeApi } from "../../api/index.js";
 import { useApi } from "../../hooks/useApi.js";
@@ -26,30 +27,30 @@ export default function AdminIntake() {
         <ErrorState error={error} onRetry={reload} />
       ) : intakes.length === 0 ? (
         <Card>
-          <EmptyState icon={School} title="No intakes yet" body='Click "Configure Intake" to open a grade for applications.' />
+          <EmptyState art={SchoolArt} title="No intakes yet" body='Click "Configure Intake" to open a grade for applications.' />
         </Card>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {intakes.map((i) => (
-            <Card key={i.id} className="p-4 cursor-pointer hover:border-blue-300" onClick={() => navigate(`/schoolAdmin/intake/${i.id}`)}>
+            <Card key={i.id} className="p-4 cursor-pointer hover:border-brand-300" onClick={() => navigate(`/schoolAdmin/intake/${i.id}`)}>
               <div className="flex items-center justify-between mb-2">
-                <div className="font-medium text-slate-800">
+                <div className="font-medium text-stone-800">
                   {i.grade} · {i.year}
                 </div>
                 <StatusBadge status={i.open ? "ACCEPTED" : "DRAFT"} label={i.open ? "Open" : "Closed"} />
               </div>
-              <div className="text-xs text-slate-500">
+              <div className="text-xs text-stone-500">
                 {formatDate(i.openDate)} — {formatDate(i.closeDate)}
               </div>
-              <div className="text-xs text-slate-500 mt-1">
+              <div className="text-xs text-stone-500 mt-1">
                 {i.acceptedCount} of {i.capacity} places taken · {i.applicationCount} applications
               </div>
-              <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mt-2">
-                <div className="h-full bg-blue-500" style={{ width: `${Math.min(100, (i.acceptedCount / i.capacity) * 100)}%` }} />
+              <div className="w-full h-1.5 bg-stone-100 rounded-full overflow-hidden mt-2">
+                <div className="h-full bg-brand-500" style={{ width: `${Math.min(100, (i.acceptedCount / i.capacity) * 100)}%` }} />
               </div>
               <div className="flex flex-wrap gap-1.5 mt-3">
                 {i.requiredDocuments.map((d) => (
-                  <span key={d} className="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">
+                  <span key={d} className="text-[11px] bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full">
                     {d}
                   </span>
                 ))}

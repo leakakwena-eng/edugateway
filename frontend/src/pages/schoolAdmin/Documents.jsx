@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FileText } from "lucide-react";
 import { Card, EmptyState, ErrorState, PageHeader, StatusBadge, Table } from "../../components/ui.jsx";
+import { DocumentsArt } from "../../components/Illustrations.jsx";
 import { TableSkeleton } from "../../components/Skeleton.jsx";
 import { StatusFilter } from "../../components/TableControls.jsx";
 import { documentApi } from "../../api/index.js";
@@ -27,30 +28,30 @@ export default function AdminDocuments() {
       </PageHeader>
       <Card className="overflow-hidden">
         {docs.length === 0 ? (
-          <EmptyState icon={FileText} title="No documents" body={status ? "No documents with this status." : "No documents uploaded yet."} />
+          <EmptyState art={DocumentsArt} title="No documents" body={status ? "No documents with this status." : "No documents uploaded yet."} />
         ) : (
           <Table headers={["Document", "Learner", "Application", "Uploaded", "Status"]}>
             {docs.map((d) => (
-              <tr key={d.id} className="border-t border-slate-100">
+              <tr key={d.id} className="border-t border-stone-100">
                 <td className="px-4 py-2.5">
                   <button
                     onClick={() => documentApi.open(d.id).catch((e) => toast.error("Couldn't open document", e.message))}
-                    className="flex items-center gap-2 text-slate-700 hover:text-blue-600"
+                    className="flex items-center gap-2 text-stone-700 hover:text-brand-600"
                   >
-                    <FileText size={14} className="text-slate-400" />
+                    <FileText size={14} className="text-stone-400" />
                     {d.type}
                   </button>
                 </td>
-                <td className="px-4 py-2.5 text-slate-500">{d.learnerName}</td>
+                <td className="px-4 py-2.5 text-stone-500">{d.learnerName}</td>
                 <td className="px-4 py-2.5">
                   <button
                     onClick={() => navigate(`/schoolAdmin/applications/${d.applicationId}`)}
-                    className="text-blue-600 hover:underline"
+                    className="text-brand-600 hover:underline"
                   >
                     {d.applicationRef}
                   </button>
                 </td>
-                <td className="px-4 py-2.5 text-slate-500">{formatDate(d.uploadedAt)}</td>
+                <td className="px-4 py-2.5 text-stone-500">{formatDate(d.uploadedAt)}</td>
                 <td className="px-4 py-2.5"><StatusBadge status={d.status} /></td>
               </tr>
             ))}

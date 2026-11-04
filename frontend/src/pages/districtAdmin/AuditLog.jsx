@@ -31,16 +31,16 @@ export default function DistrictAuditLog() {
       ) : (
         <Card className="overflow-hidden">
           {rows.length === 0 ? (
-            <div className="p-8 text-center text-sm text-slate-500">No matching audit entries.</div>
+            <div className="p-8 text-center text-sm text-stone-500">No matching audit entries.</div>
           ) : (
             <Table headers={["Time", "User", "Record", "Action", "Details"]}>
               {rows.map((e) => (
-                <tr key={e.id} className="border-t border-slate-100">
-                  <td className="px-4 py-2.5 text-slate-500 whitespace-nowrap">{formatDateTime(e.timestamp)}</td>
-                  <td className="px-4 py-2.5 text-slate-700">{e.actorName}</td>
-                  <td className="px-4 py-2.5 text-slate-500">{e.entityRef}</td>
-                  <td className="px-4 py-2.5 text-slate-500">{actionLabel(e.action)}</td>
-                  <td className="px-4 py-2.5 text-slate-400">{e.details}</td>
+                <tr key={e.id} className="border-t border-stone-100">
+                  <td className="px-4 py-2.5 text-stone-500 whitespace-nowrap">{formatDateTime(e.timestamp)}</td>
+                  <td className="px-4 py-2.5 text-stone-700">{e.actorName}</td>
+                  <td className="px-4 py-2.5 text-stone-500">{e.entityRef}</td>
+                  <td className="px-4 py-2.5 text-stone-500">{actionLabel(e.action)}</td>
+                  <td className="px-4 py-2.5 text-stone-400">{e.details}</td>
                 </tr>
               ))}
             </Table>

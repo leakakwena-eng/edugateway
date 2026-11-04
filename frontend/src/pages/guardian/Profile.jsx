@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Field, PageHeader, inputClass } from "../../components/ui.jsx";
-import { initials } from "../../utils/format.js";
+import { Avatar, Button, Card, Field, PageHeader, inputClass } from "../../components/ui.jsx";
 import { guardianApi } from "../../api/index.js";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useToast } from "../../context/ToastContext.jsx";
@@ -30,12 +29,10 @@ export default function GuardianProfile() {
       <Card className="p-6">
         <form onSubmit={save} className="space-y-4">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-14 h-14 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-lg font-semibold">
-              {initials(user.name)}
-            </div>
+            <Avatar name={user.name} size="lg" />
             <div>
-              <div className="font-medium text-slate-800">{user.name}</div>
-              <div className="text-xs text-slate-500">Guardian</div>
+              <div className="font-medium text-stone-800">{user.name}</div>
+              <div className="text-xs text-stone-500">Guardian</div>
             </div>
           </div>
           <Field label="Full Name">

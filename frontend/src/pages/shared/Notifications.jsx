@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Bell, CheckCheck } from "lucide-react";
 import { Button, Card, EmptyState, ErrorState, PageHeader } from "../../components/ui.jsx";
+import { InboxArt } from "../../components/Illustrations.jsx";
 import { TableSkeleton } from "../../components/Skeleton.jsx";
 import { notificationApi } from "../../api/index.js";
 import { useApi } from "../../hooks/useApi.js";
@@ -51,27 +52,27 @@ export default function Notifications() {
           </Button>
         )}
       </PageHeader>
-      <Card className="divide-y divide-slate-100">
+      <Card className="divide-y divide-stone-100">
         {items.length === 0 ? (
-          <EmptyState icon={Bell} title="No notifications yet" body="Updates about applications will appear here." />
+          <EmptyState art={InboxArt} title="No notifications yet" body="Updates about applications will appear here." />
         ) : (
           items.map((n) => (
             <button
               key={n.id}
               onClick={() => open(n)}
-              className={`w-full text-left flex items-start gap-3 px-5 py-4 hover:bg-slate-50 ${n.read ? "" : "bg-blue-50/40"}`}
+              className={`w-full text-left flex items-start gap-3 px-5 py-4 hover:bg-stone-50 ${n.read ? "" : "bg-brand-50/40"}`}
             >
-              <div className="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
                 <Bell size={15} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium text-slate-800 flex items-center gap-2">
+                <div className="text-sm font-medium text-stone-800 flex items-center gap-2">
                   {n.title}
-                  {!n.read && <span className="w-2 h-2 rounded-full bg-blue-600" />}
+                  {!n.read && <span className="w-2 h-2 rounded-full bg-brand-600" />}
                 </div>
-                <div className="text-sm text-slate-500 mt-0.5">{n.body}</div>
+                <div className="text-sm text-stone-500 mt-0.5">{n.body}</div>
               </div>
-              <div className="text-xs text-slate-400 shrink-0">{formatRelative(n.createdAt)}</div>
+              <div className="text-xs text-stone-400 shrink-0">{formatRelative(n.createdAt)}</div>
             </button>
           ))
         )}

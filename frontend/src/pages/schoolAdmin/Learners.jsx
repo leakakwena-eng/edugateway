@@ -1,5 +1,5 @@
-import { Users } from "lucide-react";
 import { Card, EmptyState, ErrorState, PageHeader, Table } from "../../components/ui.jsx";
+import { BackpackArt } from "../../components/Illustrations.jsx";
 import { TableSkeleton } from "../../components/Skeleton.jsx";
 import { learnerApi } from "../../api/index.js";
 import { useApi } from "../../hooks/useApi.js";
@@ -19,15 +19,15 @@ export default function AdminLearners() {
       <PageHeader title="Enrolled Learners" subtitle={`${learners.length} learners at ${user.schoolName}`} />
       <Card className="overflow-hidden">
         {learners.length === 0 ? (
-          <EmptyState icon={Users} title="No learners enrolled yet" body="Learners appear here once you confirm their enrolment." />
+          <EmptyState art={BackpackArt} title="No learners enrolled yet" body="Learners appear here once you confirm their enrolment." />
         ) : (
           <Table headers={["Learner", "Grade", "Date of Birth", "Guardian"]}>
             {learners.map((l) => (
-              <tr key={l.id} className="border-t border-slate-100">
-                <td className="px-4 py-2.5 text-slate-700">{l.name}</td>
-                <td className="px-4 py-2.5 text-slate-500">{l.currentGrade}</td>
-                <td className="px-4 py-2.5 text-slate-500">{formatDate(l.dateOfBirth)}</td>
-                <td className="px-4 py-2.5 text-slate-500">{l.guardianName}</td>
+              <tr key={l.id} className="border-t border-stone-100">
+                <td className="px-4 py-2.5 text-stone-700">{l.name}</td>
+                <td className="px-4 py-2.5 text-stone-500">{l.currentGrade}</td>
+                <td className="px-4 py-2.5 text-stone-500">{formatDate(l.dateOfBirth)}</td>
+                <td className="px-4 py-2.5 text-stone-500">{l.guardianName}</td>
               </tr>
             ))}
           </Table>

@@ -35,7 +35,7 @@ import DistrictAuditLog from "./pages/districtAdmin/AuditLog.jsx";
 
 function FullPageMessage({ children }) {
   return (
-    <div className="min-h-screen flex items-center justify-center text-sm text-slate-500">{children}</div>
+    <div className="min-h-screen flex items-center justify-center text-sm text-stone-500">{children}</div>
   );
 }
 

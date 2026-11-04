@@ -80,13 +80,13 @@ export default function AdminConfigureIntake() {
   return (
     <div className="max-w-2xl">
       <BackLink to="/schoolAdmin/intake">School & Intake</BackLink>
-      <h1 className="text-lg font-semibold text-slate-800 mb-1">{intakeId ? "Edit Intake" : "Configure Intake"}</h1>
-      <p className="text-sm text-slate-500 mb-5">Set up the registration window and required documents for a grade.</p>
+      <h1 className="text-lg font-semibold text-stone-800 mb-1">{intakeId ? "Edit Intake" : "Configure Intake"}</h1>
+      <p className="text-sm text-stone-500 mb-5">Set up the registration window and required documents for a grade.</p>
 
       <Card className="p-6">
         <form onSubmit={save} className="space-y-5">
           <div>
-            <h2 className="text-sm font-semibold text-slate-700 mb-3">Intake Details</h2>
+            <h2 className="text-sm font-semibold text-stone-700 mb-3">Intake Details</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Field label="Grade">
                 <select value={form.grade} onChange={(e) => setForm({ ...form, grade: e.target.value })} className={inputClass}>
@@ -111,18 +111,18 @@ export default function AdminConfigureIntake() {
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold text-slate-700 mb-2">Required Documents</h2>
+            <h2 className="text-sm font-semibold text-stone-700 mb-2">Required Documents</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
               {DOCUMENT_TYPES.map((d) => (
-                <label key={d} className="flex items-center gap-2 text-sm text-slate-700">
-                  <input type="checkbox" checked={form.requiredDocuments.includes(d)} onChange={() => toggleDoc(d)} className="accent-blue-600" />
+                <label key={d} className="flex items-center gap-2 text-sm text-stone-700">
+                  <input type="checkbox" checked={form.requiredDocuments.includes(d)} onChange={() => toggleDoc(d)} className="accent-brand-600" />
                   {d}
                 </label>
               ))}
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+          <div className="flex justify-end gap-2 pt-2 border-t border-stone-100">
             <Button type="button" variant="secondary" onClick={() => navigate("/schoolAdmin/intake")}>
               Cancel
             </Button>

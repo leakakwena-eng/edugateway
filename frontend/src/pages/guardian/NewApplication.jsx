@@ -114,13 +114,13 @@ export default function NewApplication() {
       <BackLink to="/guardian/dashboard">Back to Dashboard</BackLink>
 
       <div className="flex items-center justify-between mb-1">
-        <h1 className="text-lg font-semibold text-slate-800">New Application</h1>
-        <span className="text-xs text-slate-500">
+        <h1 className="text-lg font-semibold text-stone-800">New Application</h1>
+        <span className="text-xs text-stone-500">
           Step {step} of {STEPS.length}
         </span>
       </div>
-      <div className="w-full h-1.5 bg-slate-200 rounded-full mb-6 overflow-hidden">
-        <div className="h-full bg-blue-600 transition-all" style={{ width: `${pct}%` }} />
+      <div className="w-full h-1.5 bg-stone-200 rounded-full mb-6 overflow-hidden">
+        <div className="h-full bg-brand-600 transition-all" style={{ width: `${pct}%` }} />
       </div>
 
       <div className="flex items-center gap-2 mb-6">
@@ -128,15 +128,15 @@ export default function NewApplication() {
           <div key={s} className="flex items-center gap-2 flex-1">
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold shrink-0 ${
-                i + 1 < step ? "bg-green-600 text-white" : i + 1 === step ? "bg-blue-600 text-white" : "bg-slate-200 text-slate-500"
+                i + 1 < step ? "bg-green-600 text-white" : i + 1 === step ? "bg-brand-600 text-white" : "bg-stone-200 text-stone-500"
               }`}
             >
               {i + 1 < step ? <Check size={13} /> : i + 1}
             </div>
-            <span className={`text-xs ${i + 1 === step ? "text-slate-800 font-medium" : "text-slate-400"} hidden sm:inline`}>
+            <span className={`text-xs ${i + 1 === step ? "text-stone-800 font-medium" : "text-stone-400"} hidden sm:inline`}>
               {s}
             </span>
-            {i < STEPS.length - 1 && <div className="flex-1 h-px bg-slate-200" />}
+            {i < STEPS.length - 1 && <div className="flex-1 h-px bg-stone-200" />}
           </div>
         ))}
       </div>
@@ -145,25 +145,25 @@ export default function NewApplication() {
         {step === 1 && (
           <div className="space-y-4">
             <div>
-              <h2 className="font-medium text-slate-800">Learner</h2>
-              <p className="text-xs text-slate-500 mt-0.5">Who is this application for?</p>
+              <h2 className="font-medium text-stone-800">Learner</h2>
+              <p className="text-xs text-stone-500 mt-0.5">Who is this application for?</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {learners.map((l) => (
                 <ChoiceCard key={l.id} selected={String(l.id) === String(learnerId)} onClick={() => setLearnerId(String(l.id))}>
-                  <div className="font-medium text-slate-800">{l.name}</div>
-                  <div className="text-xs text-slate-500">
+                  <div className="font-medium text-stone-800">{l.name}</div>
+                  <div className="text-xs text-stone-500">
                     {l.currentSchoolName ? `${l.currentGrade} · ${l.currentSchoolName}` : "Not enrolled yet"}
                   </div>
                 </ChoiceCard>
               ))}
               <ChoiceCard selected={learnerId === NEW_LEARNER} onClick={() => setLearnerId(NEW_LEARNER)}>
-                <div className="font-medium text-slate-800">+ Add a new learner</div>
-                <div className="text-xs text-slate-500">Saved to your learners when you submit.</div>
+                <div className="font-medium text-stone-800">+ Add a new learner</div>
+                <div className="text-xs text-stone-500">Saved to your learners when you submit.</div>
               </ChoiceCard>
             </div>
             {learnerId === NEW_LEARNER && (
-              <div className="pt-2 border-t border-slate-100">
+              <div className="pt-2 border-t border-stone-100">
                 <LearnerForm value={newLearner} onChange={setNewLearner} />
               </div>
             )}
@@ -173,11 +173,11 @@ export default function NewApplication() {
         {step === 2 && (
           <div className="space-y-4">
             <div>
-              <h2 className="font-medium text-slate-800">School & Grade</h2>
-              <p className="text-xs text-slate-500 mt-0.5">Only intakes currently open for applications are listed.</p>
+              <h2 className="font-medium text-stone-800">School & Grade</h2>
+              <p className="text-xs text-stone-500 mt-0.5">Only intakes currently open for applications are listed.</p>
             </div>
             {intakes.length === 0 ? (
-              <div className="text-sm text-slate-500">No schools are accepting applications right now.</div>
+              <div className="text-sm text-stone-500">No schools are accepting applications right now.</div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Field label="School *">
@@ -219,13 +219,13 @@ export default function NewApplication() {
               </div>
             )}
             {intake && (
-              <div className="text-sm text-slate-600 bg-slate-50 rounded-lg p-4 space-y-1">
+              <div className="text-sm text-stone-600 bg-stone-50 rounded-lg p-4 space-y-1">
                 <div>Applications close {formatDate(intake.closeDate)}.</div>
                 <div>
                   {Math.max(intake.capacity - intake.acceptedCount, 0)} of {intake.capacity} places still available.
                 </div>
                 {isTransfer && (
-                  <div className="flex items-start gap-2 text-blue-700 pt-1">
+                  <div className="flex items-start gap-2 text-brand-700 pt-1">
                     <Info size={15} className="mt-0.5 shrink-0" />
                     This will be a transfer from {learner.currentSchoolName}. They'll be asked to release {learner.name}'s
                     records once the transfer is accepted.
@@ -239,25 +239,25 @@ export default function NewApplication() {
         {step === 3 && (
           <div className="space-y-4">
             <div>
-              <h2 className="font-medium text-slate-800">Documents</h2>
-              <p className="text-xs text-slate-500 mt-0.5">
+              <h2 className="font-medium text-stone-800">Documents</h2>
+              <p className="text-xs text-stone-500 mt-0.5">
                 PDF, JPG or PNG, max 5 MB each. You can also upload them later from the application page.
               </p>
             </div>
             {intake.requiredDocuments.length === 0 ? (
-              <div className="text-sm text-slate-500">This intake doesn't require any documents.</div>
+              <div className="text-sm text-stone-500">This intake doesn't require any documents.</div>
             ) : (
               <div className="space-y-2">
                 {intake.requiredDocuments.map((type) => {
                   const file = files[type];
                   return (
-                    <div key={type} className="flex flex-wrap items-center justify-between gap-2 border border-slate-200 rounded-lg px-4 py-3">
+                    <div key={type} className="flex flex-wrap items-center justify-between gap-2 border border-stone-200 rounded-lg px-4 py-3">
                       <div className="flex items-center gap-2 min-w-0">
-                        <FileText size={16} className="text-slate-400 shrink-0" />
+                        <FileText size={16} className="text-stone-400 shrink-0" />
                         <div className="min-w-0">
-                          <div className="text-sm text-slate-700">{type}</div>
+                          <div className="text-sm text-stone-700">{type}</div>
                           {file && (
-                            <div className="text-xs text-slate-400 truncate">
+                            <div className="text-xs text-stone-400 truncate">
                               {file.name} · {formatBytes(file.size)}
                             </div>
                           )}
@@ -277,7 +277,7 @@ export default function NewApplication() {
                                   return next;
                                 })
                               }
-                              className="text-slate-400 hover:text-slate-600"
+                              className="text-stone-400 hover:text-stone-600"
                               aria-label={`Remove ${type}`}
                             >
                               <X size={14} />
@@ -301,22 +301,22 @@ export default function NewApplication() {
         {step === 4 && (
           <div className="space-y-4">
             <div>
-              <h2 className="font-medium text-slate-800">Review & Submit</h2>
-              <p className="text-xs text-slate-500 mt-0.5">Check the details before you submit.</p>
+              <h2 className="font-medium text-stone-800">Review & Submit</h2>
+              <p className="text-xs text-stone-500 mt-0.5">Check the details before you submit.</p>
             </div>
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
-              <dt className="text-slate-500">Learner</dt>
-              <dd className="text-slate-800">{learnerName}</dd>
-              <dt className="text-slate-500">School</dt>
-              <dd className="text-slate-800">{intake.schoolName}</dd>
-              <dt className="text-slate-500">Grade / Year</dt>
-              <dd className="text-slate-800">
+              <dt className="text-stone-500">Learner</dt>
+              <dd className="text-stone-800">{learnerName}</dd>
+              <dt className="text-stone-500">School</dt>
+              <dd className="text-stone-800">{intake.schoolName}</dd>
+              <dt className="text-stone-500">Grade / Year</dt>
+              <dd className="text-stone-800">
                 {intake.grade} · {intake.year}
               </dd>
-              <dt className="text-slate-500">Type</dt>
-              <dd className="text-slate-800">{isTransfer ? `Transfer from ${learner.currentSchoolName}` : "New admission"}</dd>
-              <dt className="text-slate-500">Documents</dt>
-              <dd className="text-slate-800">
+              <dt className="text-stone-500">Type</dt>
+              <dd className="text-stone-800">{isTransfer ? `Transfer from ${learner.currentSchoolName}` : "New admission"}</dd>
+              <dt className="text-stone-500">Documents</dt>
+              <dd className="text-stone-800">
                 {Object.keys(files).length} of {intake.requiredDocuments.length} attached
               </dd>
             </dl>
@@ -325,7 +325,7 @@ export default function NewApplication() {
 
         {stepError && <div className="text-sm text-red-600 mt-4">{stepError}</div>}
 
-        <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100">
+        <div className="flex items-center justify-between mt-6 pt-4 border-t border-stone-100">
           <Button
             variant="secondary"
             onClick={back}
@@ -354,7 +354,7 @@ function ChoiceCard({ selected, onClick, children }) {
       type="button"
       onClick={onClick}
       className={`text-left border rounded-lg px-4 py-3 transition-colors ${
-        selected ? "border-blue-600 ring-1 ring-blue-600 bg-blue-50/50" : "border-slate-200 hover:border-slate-300"
+        selected ? "border-brand-600 ring-1 ring-brand-600 bg-brand-50/50" : "border-stone-200 hover:border-stone-300"
       }`}
     >
       {children}

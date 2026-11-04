@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, Users } from "lucide-react";
-import { Button, Card, EmptyState, ErrorState, PageHeader } from "../../components/ui.jsx";
+import { Plus } from "lucide-react";
+import { Avatar, Button, Card, EmptyState, ErrorState, PageHeader } from "../../components/ui.jsx";
+import { BackpackArt } from "../../components/Illustrations.jsx";
 import { TableSkeleton } from "../../components/Skeleton.jsx";
 import LearnerForm, { EMPTY_LEARNER, toLearnerRequest } from "../../components/LearnerForm.jsx";
 import { applicationApi, learnerApi } from "../../api/index.js";
 import { useApi } from "../../hooks/useApi.js";
 import { useToast } from "../../context/ToastContext.jsx";
-import { initials, formatDate } from "../../utils/format.js";
+import { formatDate } from "../../utils/format.js";
 
 export default function GuardianLearners() {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ export default function GuardianLearners() {
       {editing && (
         <Card className="p-5 mb-4 max-w-2xl">
           <form onSubmit={save}>
-            <h2 className="text-sm font-semibold text-slate-700 mb-3">
+            <h2 className="text-sm font-semibold text-stone-700 mb-3">
               {editing === "new" ? "Add a learner" : "Edit learner"}
             </h2>
             <LearnerForm value={form} onChange={setForm} />
@@ -79,7 +80,7 @@ export default function GuardianLearners() {
 
       {learners.length === 0 ? (
         <Card>
-          <EmptyState icon={Users} title="No learners yet" body="Add a learner to start an application for them." />
+          <EmptyState art={BackpackArt} title="No learners yet" body="Add a learner to start an application for them." />
         </Card>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -88,28 +89,26 @@ export default function GuardianLearners() {
             return (
               <Card key={l.id} className="p-4">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-11 h-11 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-semibold">
-                    {initials(l.name)}
-                  </div>
+                  <Avatar name={l.name} />
                   <div className="min-w-0">
-                    <div className="font-medium text-slate-800">{l.name}</div>
-                    <div className="text-xs text-slate-500">
+                    <div className="font-medium text-stone-800">{l.name}</div>
+                    <div className="text-xs text-stone-500">
                       Born {formatDate(l.dateOfBirth)}
                       {l.currentSchoolName && ` · ${l.currentGrade}, ${l.currentSchoolName}`}
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-500">
+                  <span className="text-stone-500">
                     {apps.length} application{apps.length === 1 ? "" : "s"} on record
                   </span>
                   <span className="flex gap-3">
-                    <button onClick={() => startEdit(l)} className="text-slate-500 hover:text-slate-700">
+                    <button onClick={() => startEdit(l)} className="text-stone-500 hover:text-stone-700">
                       Edit
                     </button>
                     <button
                       onClick={() => navigate(`/guardian/new-application?learnerId=${l.id}`)}
-                      className="text-blue-600 font-medium hover:underline"
+                      className="text-brand-600 font-medium hover:underline"
                     >
                       Apply
                     </button>

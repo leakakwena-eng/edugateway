@@ -1,13 +1,22 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, StatusBadge, Table } from "./ui.jsx";
+import { Avatar, Card, EmptyState, StatusBadge, Table } from "./ui.jsx";
 import { SearchInput, StatusFilter } from "./TableControls.jsx";
+import { BackpackArt } from "./Illustrations.jsx";
 import { APPLICATION_STATUSES } from "../constants.js";
 import { formatDate, typeLabel } from "../utils/format.js";
 
 const COLUMNS = {
-  reference: { header: "ID", cell: (a) => <span className="text-slate-500">{a.reference}</span> },
-  learner: { header: "Learner", cell: (a) => <span className="text-slate-700">{a.learnerName}</span> },
+  reference: { header: "ID", cell: (a) => <span className="font-mono text-xs text-stone-500">{a.reference}</span> },
+  learner: {
+    header: "Learner",
+    cell: (a) => (
+      <span className="flex items-center gap-2.5">
+        <Avatar name={a.learnerName} size="sm" />
+        <span className="font-semibold text-stone-900">{a.learnerName}</span>
+      </span>
+    ),
+  },
   guardian: { header: "Guardian", cell: (a) => a.guardianName },
   type: { header: "Type", cell: (a) => typeLabel(a.type) },
   school: { header: "School", cell: (a) => a.schoolName },
@@ -47,26 +56,28 @@ export default function ApplicationsTable({
   return (
     <div>
       {filters && (
-        <div className="flex flex-wrap items-center gap-3 mb-3">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
           <SearchInput value={search} onChange={setSearch} placeholder="Search learner, school or ID..." />
           <StatusFilter value={status} onChange={setStatus} statuses={APPLICATION_STATUSES} />
         </div>
       )}
       <Card className="overflow-hidden">
         {rows.length === 0 ? (
-          <div className="p-8 text-center text-sm text-slate-500">
-            {search || status ? "No applications match your filters." : emptyText}
-          </div>
+          search || status ? (
+            <div className="p-10 text-center text-sm text-stone-500">No applications match your filters.</div>
+          ) : (
+            <EmptyState art={BackpackArt} title="Nothing here yet" body={emptyText} />
+          )
         ) : (
           <Table headers={columns.map((c) => COLUMNS[c].header)}>
             {rows.map((a) => (
               <tr
                 key={a.id}
                 onClick={() => navigate(`${basePath}/${a.id}`)}
-                className="border-t border-slate-100 hover:bg-slate-50 cursor-pointer"
+                className="border-t border-stone-100 hover:bg-sun-50/50 cursor-pointer"
               >
                 {columns.map((c) => (
-                  <td key={c} className="px-4 py-2.5 text-slate-500 whitespace-nowrap">
+                  <td key={c} className="px-4 py-3 text-stone-500 whitespace-nowrap">
                     {COLUMNS[c].cell(a)}
                   </td>
                 ))}

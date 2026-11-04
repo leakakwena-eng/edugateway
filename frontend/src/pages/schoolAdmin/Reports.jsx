@@ -34,8 +34,8 @@ export default function AdminReports() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {tiles.map(([label, value]) => (
           <Card key={label} className="p-4">
-            <div className="text-xs text-slate-500 mb-1">{label}</div>
-            <div className="text-2xl font-semibold text-slate-800">{value}</div>
+            <div className="text-xs text-stone-500 mb-1">{label}</div>
+            <div className="text-2xl font-semibold text-stone-800">{value}</div>
           </Card>
         ))}
       </div>

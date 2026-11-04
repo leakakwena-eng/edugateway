@@ -39,7 +39,7 @@ export default function FileUploadButton({ label = "Upload", onFile, onError, di
         type="button"
         disabled={disabled || busy}
         onClick={() => input.current?.click()}
-        className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline disabled:text-slate-400 disabled:no-underline"
+        className="inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:underline disabled:text-stone-400 disabled:no-underline"
       >
         <Upload size={13} /> {busy ? "Uploading…" : label}
       </button>

@@ -85,14 +85,14 @@ export default function DistrictSchools() {
           {schools.map((s) => {
             const st = statsFor(s.id);
             return (
-              <tr key={s.id} className="border-t border-slate-100">
-                <td className="px-4 py-2.5 text-slate-700">{s.name}</td>
-                <td className="px-4 py-2.5 text-slate-500">{schoolTypeLabel(s.type)}</td>
-                <td className="px-4 py-2.5 text-slate-500">{s.emisNo}</td>
-                <td className="px-4 py-2.5 text-slate-500">{st?.applications ?? 0}</td>
-                <td className="px-4 py-2.5 text-slate-500">{st?.pending ?? 0}</td>
-                <td className="px-4 py-2.5 text-slate-500">{st?.enrolled ?? 0}</td>
-                <td className="px-4 py-2.5 text-slate-500">{st?.capacity ?? 0}</td>
+              <tr key={s.id} className="border-t border-stone-100">
+                <td className="px-4 py-2.5 text-stone-700">{s.name}</td>
+                <td className="px-4 py-2.5 text-stone-500">{schoolTypeLabel(s.type)}</td>
+                <td className="px-4 py-2.5 text-stone-500">{s.emisNo}</td>
+                <td className="px-4 py-2.5 text-stone-500">{st?.applications ?? 0}</td>
+                <td className="px-4 py-2.5 text-stone-500">{st?.pending ?? 0}</td>
+                <td className="px-4 py-2.5 text-stone-500">{st?.enrolled ?? 0}</td>
+                <td className="px-4 py-2.5 text-stone-500">{st?.capacity ?? 0}</td>
               </tr>
             );
           })}
