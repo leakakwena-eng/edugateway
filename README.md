@@ -48,18 +48,18 @@ then can the receiving school enrol the learner. Accepting is refused once an in
 ```mermaid
 flowchart LR
     subgraph Browser
-        UI[React pages] --> API[src/api<br/>fetch + JWT]
+        UI["React pages"] --> API["src/api<br/>fetch + JWT"]
     end
-    API -- /api/v1 JSON --> F[AuthFilter<br/>JWT + @RolesAllowed]
+    API -->|"/api/v1 JSON"| F["AuthFilter<br/>JWT + @RolesAllowed"]
     subgraph WildFly
-        F --> R[Resources<br/>JAX-RS]
-        R --> S[Services<br/>@Stateless, transactional]
-        S --> M[DtoMapper]
-        S --> E[JPA entities]
-        S --> A[AuditService /<br/>NotificationService]
+        F --> R["Resources<br/>JAX-RS"]
+        R --> S["Services<br/>@Stateless, transactional"]
+        S --> M["DtoMapper"]
+        S --> E["JPA entities"]
+        S --> A["AuditService /<br/>NotificationService"]
     end
-    E --> DB[(PostgreSQL)]
-    S --> FS[(Upload directory)]
+    E --> DB[("PostgreSQL")]
+    S --> FS[("Upload directory")]
 ```
 
 **Backend** (`backend/src/main/java/za/ac/ump/edugateway`)
